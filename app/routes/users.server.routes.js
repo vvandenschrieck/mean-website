@@ -1,13 +1,13 @@
-var users = require('../../app/controllers/users.server.controller'), 
+var ctrl = require('../../app/controllers/users.server.controller'), 
 	passport = require('passport');
 
 module.exports = function(app){
 	app.route('/signup')
-		.get(users.renderSignup)
-		.post(users.signup);
+		.get(ctrl.renderSignup)
+		.post(ctrl.signup);
 	
 	app.route('/signin')
-		.get(users.renderSignin)
+		.get(ctrl.renderSignin)
 		.post(
 			passport.authenticate('local', {
           	  	successRedirect: '/',
@@ -17,17 +17,17 @@ module.exports = function(app){
 			})
 		);
 	
-	app.get('/signout', users.signout);
+	app.get('/signout', ctrl.signout);
 	
-	app.route('/users')
-		.post(users.create)
-		.get(users.list);
-
-	app.route('/users/:userID')
-		.get(users.read)
-		.put(users.update)
-		.delete(users.delete);
-		
-	app.param('userID', users.userByID);
+	// app.route('/users')
+	// 	.post(ctrl.create)
+	// 	.get(ctrl.list);
+	//
+	// app.route('/users/:userID')
+	// 	.get(ctrl.read)
+	// 	.put(ctrl.update)
+	// 	.delete(ctrl.delete);
+	//
+	// app.param('userID', ctrl.userByID);
 }
 
