@@ -29,5 +29,5 @@ module.exports = function(app){
 	// 	.delete(ctrl.delete);
 	//
 	// app.param('userID', ctrl.userByID);
-}
+};
 

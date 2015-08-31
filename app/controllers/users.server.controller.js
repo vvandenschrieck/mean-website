@@ -114,11 +114,11 @@ exports.list = function(req, res, next){
 			res.json(myUsers);
 		}		
 	});	
-}
+};
 
 exports.read = function(req, res){
 	res.json(req.user);
-}
+};
 
 exports.userByID = function(req, res, next, id){
 	User.findOne(
@@ -132,8 +132,8 @@ exports.userByID = function(req, res, next, id){
 				next();
 			}
 		}
-	)
-}
+	);
+};
 
 exports.create = function(req, res, next){
 	var user = new User(req.body);
@@ -145,7 +145,7 @@ exports.create = function(req, res, next){
 			res.json(user);
 		}
 	});
-}
+};
 
 exports.update = function(req, res, next){
 	User.findByIdAndUpdate(req.user.id, req.body, function(err, user){
@@ -156,14 +156,14 @@ exports.update = function(req, res, next){
 			res.json(user);
 		}	
 	});
-}
+};
 
 exports.delete = function(req, res, next){
 	req.user.remove(function(err){
 		if(err) return next(err);
 		else res.json(req.user);
 	});
-}
+};
 
 exports.requiresLogin = function(req, res, next){
 	if(!req.isAuthenticated()){
@@ -172,4 +172,4 @@ exports.requiresLogin = function(req, res, next){
 		});
 	}
 	next();
-}
+};
